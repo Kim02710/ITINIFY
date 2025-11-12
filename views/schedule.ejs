@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Itinerary Calendar</title>
+    <link rel="stylesheet" href="assets/styles/schedule.css">
+    <link rel="stylesheet" href="assets/styles/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gantari:wght@400;500&family=Josefin+Sans&family=M+PLUS+1p:wght@500;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"  />
+</head>
+<body>
+    <div class="container">
+         <!-- Header Section -->
+        <header class="header">
+            <div class="user-info">
+                <div class="greeting-line">
+                    <span class="user-greeting">Hi, </span>
+                    <span class="username"></span>
+                </div>
+                <div class="date" id="currentDate"></div>
+            </div>
+            <div class="user-avatar">
+                <a href="/profile">
+                    <div class="avatar-inner">
+                        <i class="fa-solid fa-circle-user"></i>
+                    </div>
+                </a>
+            </div>
+        </header>
+
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <button class="nav-btn" id="prevMonth">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+                <h2 class="month-title" id="monthYear"></h2>
+                <button class="nav-btn" id="nextMonth">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="calendar-grid" id="calendarGrid"></div>
+
+            <div class="notes-section" id="notesSection" style="display: none;">
+                <div class="notes-header">
+                    <h3 id="selectedDate">Select a date</h3>
+                </div>
+                <div class="notes-list" id="notesList">
+                    <p class="no-notes">No notes for this date</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Plan Modal -->
+        <div class="modal-overlay" id="planModal">
+            <div class="modal-content">
+                <button class="close-button" id="closeModal">
+                    <div class="close-icon"><i class="fa-solid fa-xmark"></i></div>
+                </button>
+                
+                <div class="form-section">
+                    <div class="form-group">
+                        <div class="form-label">
+                            <div class="label-icon calendar-icon"><i class="fa-solid fa-calendar"></i></div>
+                            Date
+                        </div>
+                        <input type="date" class="form-input" id="planDate" placeholder="Enter date" value="">
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="form-label">
+                            <div class="label-icon notes-icon"><i class="fa-solid fa-clipboard"></i></div>
+                            Notes
+                        </div>
+                        <input type="text" class="form-input" id="planNotes" placeholder="Enter Notes">
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="form-label">
+                            <div class="label-icon clock-icon"><i class="fa-solid fa-clock"></i></div>
+                            Time
+                        </div>
+                        <input type="time" class="form-input" id="planTime" placeholder="Select Time">
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="form-label">
+                            <div class="label-icon location-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            Location
+                        </div>
+                        <input type="text" class="form-input" id="planLocation" placeholder="Enter Location">
+                    </div>
+                </div>
+                
+                <button class="save-button" id="savePlan">Save Plan</button>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="nav-bar">
+            <div class="nav-content">
+                <a href="/home" class="nav-item">
+                    <div class="nav-icon">
+                        <div class="home-icon"><i class="fa-solid fa-house"></i></div>
+                    </div>
+                    <div class="nav-text">home</div>
+                </a>
+                
+                <div class="add-button">
+                    <div class="add-icon"><i class="fa-solid fa-plus"></i></div>
+                </div>
+                
+                <a href="/schedule" class="nav-item">
+                    <div class="nav-icon">
+                        <div class="schedule-icon"><i class="fa-solid fa-calendar"></i></div>
+                    </div>
+                    <div class="nav-text">schedule</div>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <script src="js/schedule.js"></script>
+</body>
+</html>

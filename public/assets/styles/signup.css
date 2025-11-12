@@ -1,0 +1,305 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Gantari', sans-serif;
+    background: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 430px;
+    background: white;
+    min-height: 100vh;
+    height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* Header Section */
+.header {
+    min-height: 380px;
+    background: linear-gradient(180deg, #00D4FF 0%, white 100%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.brand-title {
+    color: white;
+    font-size: clamp(72px, 22vw, 96px);
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 120px;
+}
+
+.back-button {
+    position: absolute;
+    top: 21px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-size: clamp(18px, 5.6vw, 24px);
+    font-family: 'Gantari', sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.back-arrow {
+    width: 31px;
+    height: 31px;
+    position: relative;
+}
+
+.back-arrow::before {
+    content: '';
+    position: absolute;
+    width: 7.75px;
+    height: 15.50px;
+    left: 11.62px;
+    top: 7.75px;
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    transform: rotate(45deg);
+}
+
+/* Form Section */
+.form-section {
+    flex: 1;
+    background: white;
+    border-top-left-radius: 600px;
+    border-top-right-radius: 600px;
+    margin-top: -100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.signup-title {
+    color: rgba(0, 212, 255, 0.50);
+    font-size: clamp(32px, 9.3vw, 40px);
+    font-family: 'Gantari', sans-serif;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+/* Message notifications */
+.message {
+    width: 100%;
+    max-width: 342px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: clamp(14px, 3.7vw, 16px);
+    font-family: 'Gantari', sans-serif;
+    font-weight: 500;
+}
+
+.message.error {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef5350;
+}
+
+.message.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #66bb6a;
+}
+
+.signup-form {
+    width: 100%;
+    max-width: 342px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.input-group {
+    width: 100%;
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.input-field {
+    width: 100%;
+    height: 55px;
+    border-radius: 30px;
+    border: 1.8px solid #B9B9B9;
+    background: transparent;
+    padding: 0 20px;
+    font-size: clamp(18px, 5.6vw, 24px);
+    font-family: 'M PLUS 1p', sans-serif;
+    font-weight: 500;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #00D4FF;
+}
+
+
+.input-field:focus + .input-label,
+.input-field:not(:placeholder-shown) + .input-label {
+    top: -12px;
+    font-size: clamp(14px, 4.2vw, 18px);
+    color: #00D4FF;
+}
+
+.create-account-button {
+    width: 100%;
+    max-width: 306px;
+    height: 55px;
+    background: #00D4FF;
+    border-radius: 50px;
+    border: none;
+    color: white;
+    font-size: clamp(20px, 6.5vw, 28px);
+    font-family: 'M PLUS 1p', sans-serif;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.create-account-button:hover {
+    background: #00b8e6;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    body {
+        padding: 0;
+    }
+    
+    .container {
+        border-radius: 0;
+        max-width: 100%;
+    }
+    
+    .header {
+        min-height: 320px;
+    }
+    
+    .form-section {
+        border-top-left-radius: 400px;
+        border-top-right-radius: 400px;
+        margin-top: -80px;
+        padding: 50px 20px 25px;
+    }
+    
+    .brand-title {
+        margin-top: 90px;
+    }
+    
+    .back-button {
+        left: 20px;
+        top: 15px;
+    }
+}
+
+@media (max-width: 375px) {
+    .header {
+        min-height: 280px;
+    }
+    
+    .form-section {
+        border-top-left-radius: 300px;
+        border-top-right-radius: 300px;
+        margin-top: -60px;
+        padding: 40px 20px 20px;
+    }
+    
+    .signup-title {
+        margin-bottom: 25px;
+    }
+    
+    .input-field {
+        height: 50px;
+    }
+    
+    .create-account-button {
+        height: 50px;
+        margin-top: 15px;
+    }
+    
+    .brand-title {
+        margin-top: 70px;
+    }
+}
+
+@media (max-height: 700px) {
+    .header {
+        min-height: 250px;
+    }
+    
+    .form-section {
+        margin-top: -70px;
+        padding: 45px 20px 20px;
+    }
+    
+    .brand-title {
+        margin-top: 80px;
+        font-size: clamp(60px, 18vw, 80px);
+    }
+    
+    .signup-title {
+        margin-bottom: 25px;
+    }
+}
+
+@media (max-width: 320px) {
+    .header {
+        min-height: 240px;
+    }
+    
+    .form-section {
+        border-top-left-radius: 200px;
+        border-top-right-radius: 200px;
+        margin-top: -50px;
+        padding: 35px 15px 20px;
+    }
+    
+    .input-field {
+        height: 48px;
+    }
+    
+    .create-account-button {
+        height: 48px;
+    }
+}
