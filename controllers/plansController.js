@@ -13,12 +13,21 @@ const createPlan = (req, res) => {
     return res.status(400).json({ message: 'Date is required.' });
   }
 
-  const stmt = db.prepare(
-    'INSERT INTO plans (user_id, date, notes, time, location) VALUES (?, ?, ?, ?, ?)'
-  );
-  const result = stmt.run(req.user.id, date, notes, time, location);
+  if (!notes) {
+    return res.status(400).json({ message: 'Notes are required.' });
+  }
 
-  res.status(201).json({ id: result.lastInsertRowid, date, notes, time, location });
+  try {
+    const stmt = db.prepare(
+      'INSERT INTO plans (user_id, date, notes, time, location) VALUES (?, ?, ?, ?, ?)'
+    );
+    const result = stmt.run(req.user.id, date, notes, time || null, location || null);
+
+    res.status(201).json({ id: result.lastInsertRowid, date, notes, time: time || null, location: location || null });
+  } catch (error) {
+    console.error('Error creating plan:', error);
+    res.status(500).json({ message: 'Failed to create plan.' });
+  }
 };
 
 const deletePlan = (req, res) => {
