@@ -9,38 +9,16 @@ const getPlans = (req, res) => {
 const createPlan = (req, res) => {
   const { date, notes, time, location } = req.body;
 
-  // Ensure the request is authenticated
-  if (!req.user || !req.user.id) {
-    return res.status(401).json({ message: 'Authentication required.' });
-  }
-
   if (!date) {
     return res.status(400).json({ message: 'Date is required.' });
   }
 
-  if (!notes || !String(notes).trim()) {
-    return res.status(400).json({ message: 'Notes are required.' });
-  }
+  const stmt = db.prepare(
+    'INSERT INTO plans (user_id, date, notes, time, location) VALUES (?, ?, ?, ?, ?)'
+  );
+  const result = stmt.run(req.user.id, date, notes, time, location);
 
-  // Normalize optional fields to NULL when empty
-  const timeVal = time && String(time).trim() ? time : null;
-  const locationVal = location && String(location).trim() ? location : null;
-
-  try {
-    const stmt = db.prepare(
-      'INSERT INTO plans (user_id, date, notes, time, location) VALUES (?, ?, ?, ?, ?)'
-    );
-    const result = stmt.run(req.user.id, date, notes, timeVal, locationVal);
-
-    // better-sqlite3 returns { changes, lastInsertRowid }
-    // but be tolerant and also check for lastID (sqlite3)
-    const insertedId = (result && (result.lastInsertRowid || result.lastID)) || null;
-
-    res.status(201).json({ id: insertedId, date, notes, time: timeVal, location: locationVal });
-  } catch (error) {
-    console.error('Error creating plan:', error, { body: req.body, userId: req.user.id });
-    res.status(500).json({ message: 'Failed to create plan.' });
-  }
+  res.status(201).json({ id: result.lastInsertRowid, date, notes, time, location });
 };
 
 const deletePlan = (req, res) => {
