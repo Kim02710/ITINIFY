@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITINIFY - Log In</title>
+    <link rel="stylesheet" href="assets/styles/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gantari:wght@400;500&family=Josefin+Sans&family=M+PLUS+1p:wght@500;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1 class="brand-title">ITINIFY</h1>
+        </div>
+        
+        <!-- Form Section -->
+        <div class="form-section">
+            <h2 class="login-title">LOG IN</h2>
+            
+            <div class="message error" style="display: none;"></div>
+            
+            <form class="login-form">
+                <div class="input-group">
+                    <input type="text" name="username" class="input-field" placeholder="Name" required>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" name="password" class="input-field" placeholder="Password" required>
+                </div>
+                
+                <div class="signup-text">
+                    <span class="signup-prompt">No account yet? Sign up </span>
+                    <a href="/signup" class="signup-link">here</a>
+                </div>
+                
+                <button type="submit" class="login-button">
+                    Log In
+                </button>
+            </form>
+        </div>
+    </div>
+    <script src="js/auth.js"></script>
+</body>
+</html>

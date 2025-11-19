@@ -1,0 +1,694 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Gantari', sans-serif;
+    background: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 430px;
+    background: linear-gradient(180deg, #00D4FF 0%, white 100%);
+    min-height: 100vh;
+    height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+
+/* Plan Card Section */
+.plan-section {
+    margin-top: -30px;
+    display: flex;
+    justify-content: center;
+    padding: 0 24px;
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+.plan-card {
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 383px;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 20px;
+}
+
+.plan-card.has-plans {
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.plan-card.no-plans-state {
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.plan-date-header {
+    font-size: clamp(16px, 4.5vw, 20px);
+    color: #757575;
+    font-family: 'Gantari', sans-serif;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.plan-title {
+    font-size: clamp(20px, 5.6vw, 28px);
+    color: #00D4FF;
+    font-family: 'Gantari', sans-serif;
+    font-weight: 500;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.plan-title::before {
+    content: '•';
+    font-size: 1.5em;
+}
+
+.plan-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.plan-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #9E9E9E;
+    font-size: clamp(12px, 3.5vw, 14px);
+    font-family: 'Gantari', sans-serif;
+    font-weight: 400;
+}
+
+.plan-detail-item i {
+    width: 16px;
+    color: #9E9E9E;
+}
+
+.plan-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
+
+.plan-icon-inner {
+    color: #00D4FF;
+    opacity: 50%;
+}
+
+
+.plan-status {
+    text-align: center;
+    color: #9E9E9E;
+    font-family: 'Gantari', sans-serif;
+    font-style: italic;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.no-plans {
+    font-size: clamp(14px, 3.7vw, 16px);
+}
+
+.add-plan-hint {
+    font-size: clamp(11px, 3.1vw, 13px);
+}
+
+/* Forecast Section */
+.forecast-section {
+    padding: 0 20px 20px 23px;
+    margin-top: 20px;
+    flex-shrink: 0;
+}
+
+.forecast-title {
+    background: #007BB8;
+    border-radius: 20px;
+    padding: 8px 18px;
+    margin-bottom: 15px;
+    width: fit-content;
+}
+
+.forecast-title-text {
+    color: white;
+    font-size: clamp(24px, 7.4vw, 32px);
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 500;
+}
+
+.forecast-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.forecast-card {
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.card-header {
+    padding: 8px 5px 0;
+}
+
+.day-name {
+    color: #757575;
+    font-size: clamp(14px, 4.2vw, 18px);
+    font-family: 'Gantari', sans-serif;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.date-text {
+    color: rgba(117, 117, 117, 0.50);
+    font-size: clamp(10px, 3.1vw, 12px);
+    font-family: 'Mplus 1p', sans-serif;
+    font-weight: 500;
+}
+
+.divider {
+    width: 90%;
+    height: 1.5px;
+    background: #757575;
+    margin: 4px auto;
+}
+
+.weather-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 0 8px;
+    min-height: 70px;
+}
+
+.weather-icon {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rain-icon {
+    border: 2px solid #00D4FF;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+.sunny-icon {
+    border: 2px solid #FFDD00;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+.percentage {
+    color: #757575;
+    font-size: clamp(18px, 6.3vw, 28px);
+    font-family: 'Mplus 1p', sans-serif;
+    font-weight: 500;
+}
+
+.weather-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0 5px 8px;
+}
+
+.weather-detail {
+    color: #757575;
+    font-size: clamp(9px, 2.9vw, 12px);
+    font-family: 'Mplus 1p', sans-serif;
+    font-weight: 500;
+}
+
+/* Navigation Bar */
+.nav-bar {
+    background: white;
+    padding: 20px 0 0 0;
+    position: relative;
+    flex-shrink: 0;
+    margin-top: auto;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 52px 20px;
+    position: relative;
+    min-height: 80px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    text-decoration: none;
+}
+
+.nav-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-icon, .schedule-icon {
+    color: #00D4FF;
+}
+
+.fa-solid .fa-house {
+    color:#00D4FF;
+}
+
+.nav-text {
+    color: #00D4FF;
+    font-size: clamp(12px, 3.7vw, 16px);
+    font-family: 'Mplus 1p', sans-serif;
+    font-weight: 500;
+}
+
+.add-button {
+    position: absolute;
+    left: 50%;
+    top: -30px;
+    transform: translateX(-50%);
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 41.5px;
+    width: 83px;
+    height: 83px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+}
+
+.fa-solid .fa-plus{
+    color:#00D4FF;
+}
+
+.add-icon {
+    color: #00D4FF;
+    border: 4px solid #00D4FF;
+    border-radius: 50%; 
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.50);
+    z-index: 1000;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 430px;
+    background: white;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    padding: 25px 17px;
+    position: relative;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+    background: #f0f0f0;
+}
+
+.close-icon {
+    width: 18px;
+    height: 18px;
+    color: #5B5B5B;
+    border-radius: 2px;
+    position: relative;
+}
+
+.close-icon::before,
+.close-icon::after {
+    position: absolute;
+    width: 20px;
+    height: 4px;
+    top: 50%;
+    left: 50%;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #757575;
+    font-size: clamp(18px, 5.6vw, 24px);
+    font-family: 'Gantari', sans-serif;
+    font-weight: 500;
+}
+
+.label-icon {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar-icon, .notes-icon, .clock-icon {
+    color: #757575;
+}
+
+.calendar-icon {
+    width: 16.5px;
+    height: 18.33px;
+    position: relative;
+}
+
+.calendar-icon::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 2px;
+    top: 3px;
+    left: 2px;
+}
+
+.notes-icon {
+    width: 18.33px;
+    height: 16.5px;
+    position: relative;
+}
+
+.notes-icon::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 2px;
+    top: 4px;
+    left: 3px;
+}
+
+.notes-icon::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 2px;
+    top: 8px;
+    left: 5px;
+}
+
+.clock-icon {
+    width: 17.5px;
+    height: 17.5px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.clock-icon::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 6px;
+    top: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.clock-icon::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 2px;
+    top: 50%;
+    right: 3px;
+    transform: translateY(-50%);
+}
+
+.location-icon {
+    width: 15.33px;
+    height: 19.17px;
+    position: relative;
+}
+
+.form-input {
+    width: 100%;
+    height: 47px;
+    background: white;
+    border-radius: 30px;
+    border: 1.8px solid rgba(117, 117, 117, 0.50);
+    padding: 0 20px;
+    font-size: clamp(13px, 3.5vw, 15px);
+    font-family: 'Mplus 1p', sans-serif;
+    font-weight: 500;
+    color: #757575;
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #00D4FF;
+}
+
+.form-input::placeholder {
+    color: rgba(117, 117, 117, 0.50);
+}
+
+.save-button {
+    width: 100%;
+    max-width: 306px;
+    height: 55px;
+    background: #00D4FF;
+    border-radius: 50px;
+    border: none;
+    color: white;
+    font-size: clamp(20px, 6.5vw, 28px);
+    font-family: 'Mplus 1p', sans-serif;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 auto;
+    display: block;
+}
+
+.save-button:hover {
+    background: #00b8e6;
+}
+
+/* Responsive Design for Modal */
+@media (max-width: 480px) {
+    .form-section {
+        gap: 20px;
+        margin-bottom: 25px;
+    }
+}
+
+@media (max-width: 375px) {
+    .modal-content {
+        padding: 15px 12px;
+    }
+    
+    .form-section {
+        gap: 15px;
+    }
+    
+    .form-input {
+        height: 44px;
+    }
+    
+    .save-button {
+        height: 50px;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    body {
+        padding: 0;
+    }
+    
+    .container {
+        min-height: 100vh;
+        border-radius: 0;
+        max-width: 100%;
+    }
+    
+    .forecast-cards {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    
+    .plan-card {
+        min-height: 160px;
+    }
+    
+    .nav-content {
+        padding: 0 30px 15px;
+        min-height: 70px;
+    }
+    
+    .add-button {
+        width: 70px;
+        height: 70px;
+        top: -25px;
+    }
+    
+    .add-icon {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 375px) {
+    .header {
+        min-height: 120px;
+        padding: 15px;
+    }
+    
+    .plan-section {
+        margin-top: -50px;
+    }
+    
+    .plan-card {
+        min-height: 150px;
+    }
+    
+    .plan-icon {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .forecast-section {
+        padding: 0 35px 15px 18px;
+        margin-top: 15px;
+    }
+    
+    .nav-content {
+        padding: 0 20px 15px;
+    }
+}
+
+@media (max-height: 700px) {
+    .header {
+        min-height: 110px;
+        padding: 15px 23px;
+    }
+    
+    .plan-section {
+        margin-top: -50px;
+    }
+    
+    .plan-card {
+        min-height: 140px;
+    }
+    
+    .plan-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .forecast-card {
+        padding: 12px 8px;
+    }
+    
+    .weather-info {
+        min-height: 80px;
+    }
+    
+    .nav-content {
+        padding: 0 52px 15px;
+        min-height: 70px;
+    }
+}
